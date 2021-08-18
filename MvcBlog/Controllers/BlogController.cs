@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace MvcBlog.Controllers
     public class BlogController : Controller
     {
         // GET: Blog
+        BlogManager bm = new BlogManager();
         public ActionResult Index()
         {
             return View();
@@ -16,7 +18,8 @@ namespace MvcBlog.Controllers
 
         public PartialViewResult BlogList()
         {
-            return PartialView();
+            var list = bm.GetAll();
+            return PartialView(list);
         }
         public PartialViewResult FeaturedPost()
         {
