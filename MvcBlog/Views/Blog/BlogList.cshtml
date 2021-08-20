@@ -1,5 +1,9 @@
-﻿@model IEnumerable<Entity.Concrete.Blog> 
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IEnumerable<Entity.Concrete.Blog> 
     @{ string color=""; }
+
 <div class="site-section">
     <div class="container">
         <div class="row mb-5">
@@ -49,3 +53,5 @@
          
     </div>
 </div>
+
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new { page }))
