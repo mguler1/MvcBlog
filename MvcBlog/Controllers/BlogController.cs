@@ -78,13 +78,15 @@ namespace MvcBlog.Controllers
         {
             return View();
         }
-      public PartialViewResult BlogCover()
+      public PartialViewResult BlogCover(int id)
         {
-            return PartialView();
+            var blogdetail = bm.GetBlogById(id);
+            return PartialView(blogdetail);
         }
-        public PartialViewResult BlogReadAll()
+        public PartialViewResult BlogReadAll(int id)
         {
-            return PartialView();
+            var blogdetail = bm.GetBlogById(id);
+            return PartialView(blogdetail);
         }
         public PartialViewResult CommentPartial()
         {

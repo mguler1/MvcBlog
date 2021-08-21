@@ -15,5 +15,9 @@ namespace Business.Concrete
         {
             return blogrepo.List();
         }
+        public List<Blog> GetBlogById(int id)
+        {
+            return blogrepo.List(x => x.BlogId == id);
+        }
     }
 }
