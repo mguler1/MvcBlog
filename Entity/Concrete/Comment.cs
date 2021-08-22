@@ -15,6 +15,7 @@ namespace Entity.Concrete
         public string UserName { get; set; }
         [StringLength(50)]
         public string Mail { get; set; }
+        public DateTime CommentDate { get; set; }
         [StringLength(300)]
         public string CommentText  { get; set; }
 
