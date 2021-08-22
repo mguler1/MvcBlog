@@ -15,9 +15,10 @@ namespace MvcBlog.Controllers
             var categories = cm.GetAll();
             return View(categories);
         }
-            public PartialViewResult CategoryList()
+        public PartialViewResult CategoryList()
         {
-            return PartialView();
+            var categories = cm.GetAll();
+            return PartialView(categories);
         }
     }
 }
