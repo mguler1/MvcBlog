@@ -92,9 +92,14 @@ namespace MvcBlog.Controllers
         {
             return PartialView();
         }
-        public ActionResult BlogByCategory()
+        public ActionResult BlogByCategory(int id)
         {
-            return View();
+            var bloglistbycatgeory = bm.GetBlogByCategory(id);
+            var categoryname = bm.GetBlogByCategory(id).Select(y => y.Category.CategoryName).FirstOrDefault();
+            var categorydesc = bm.GetBlogByCategory(id).Select(y => y.Category.CategoryDescription).FirstOrDefault();
+            ViewBag.categoryname = categoryname;
+            ViewBag.categorydesc = categorydesc;
+            return View(bloglistbycatgeory);
         }
     }
 }
