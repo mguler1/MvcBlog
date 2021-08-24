@@ -23,7 +23,9 @@ namespace MvcBlog.Controllers
         }
         public PartialViewResult MeetTheTeam()
         {
-            return PartialView();
+            AuthorManager auth = new AuthorManager();
+            var outhorlist = auth.GetAll();
+            return PartialView(outhorlist);
         }
        
     }
