@@ -1,4 +1,6 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete;
+using Entity.Concrete;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -17,17 +19,17 @@ namespace MvcBlog.Controllers
             return View();
         }
 
-        public PartialViewResult BlogList(int page=1)
+        public PartialViewResult BlogList(int page = 1)
         {
-            var list = bm.GetAll().ToPagedList(page,3);
+            var list = bm.GetAll().ToPagedList(page, 3);
             return PartialView(list);
         }
         public PartialViewResult FeaturedPost()
         {
             //1.post
-            var posttitle1 = bm.GetAll().OrderByDescending(z=>z.BlogId).Where(x => x.CategoryId == 1).Select(y => y.BlogTitle).FirstOrDefault();
-            var postimage1 = bm.GetAll().OrderByDescending(z=>z.BlogId).Where(x => x.CategoryId == 1).Select(y => y.BlogImage).FirstOrDefault();
-            var postblogdate1 = bm.GetAll().OrderByDescending(z=>z.BlogId).Where(x => x.CategoryId == 1).Select(y => y.BlogDate).FirstOrDefault();
+            var posttitle1 = bm.GetAll().OrderByDescending(z => z.BlogId).Where(x => x.CategoryId == 1).Select(y => y.BlogTitle).FirstOrDefault();
+            var postimage1 = bm.GetAll().OrderByDescending(z => z.BlogId).Where(x => x.CategoryId == 1).Select(y => y.BlogImage).FirstOrDefault();
+            var postblogdate1 = bm.GetAll().OrderByDescending(z => z.BlogId).Where(x => x.CategoryId == 1).Select(y => y.BlogDate).FirstOrDefault();
             //2.post
             var posttitle2 = bm.GetAll().OrderByDescending(z => z.BlogId).Where(x => x.CategoryId == 2).Select(y => y.BlogTitle).FirstOrDefault();
             var postimage2 = bm.GetAll().OrderByDescending(z => z.BlogId).Where(x => x.CategoryId == 2).Select(y => y.BlogImage).FirstOrDefault();
@@ -78,7 +80,7 @@ namespace MvcBlog.Controllers
         {
             return View();
         }
-      public PartialViewResult BlogCover(int id)
+        public PartialViewResult BlogCover(int id)
         {
             var blogdetail = bm.GetBlogById(id);
             return PartialView(blogdetail);
@@ -101,5 +103,48 @@ namespace MvcBlog.Controllers
             ViewBag.categorydesc = categorydesc;
             return View(bloglistbycatgeory);
         }
+        public ActionResult AdminBlogList()
+        {
+            var bloglist = bm.GetAll();
+            return View(bloglist);
+        }
+        [HttpGet]
+        public ActionResult AddNewBlog()
+        {
+            Context c = new Context();
+            List<SelectListItem> values = (from x in c.Categories.ToList() select new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
+            List<SelectListItem> values2 = (from x in c.Authors.ToList() select new SelectListItem { Text = x.AuthorName, Value = x.AuthorId.ToString() }).ToList();
+            ViewBag.author = values2;
+            ViewBag.category = values;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddNewBlog(Blog b)
+        {
+            bm.AddBlog(b);
+            return RedirectToAction("AdminBlogList");
+        }
+        public ActionResult DeleteBlog(int id)
+        {
+            bm.DeleteBlog(id);
+            return RedirectToAction("AdminBlogList");
+        }
+        public ActionResult UpdateBlog(int id)
+        {
+            Context c = new Context();
+            List<SelectListItem> values = (from x in c.Categories.ToList() select new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
+            List<SelectListItem> values2 = (from x in c.Authors.ToList() select new SelectListItem { Text = x.AuthorName, Value = x.AuthorId.ToString() }).ToList();
+            ViewBag.author = values2;
+            ViewBag.category = values;
+            Blog blog = bm.FindBlog(id);
+            return View(blog);
+        }
+        [HttpPost]
+        public ActionResult UpdateBlog(Blog p)
+        {
+            bm.UpdateBlog(p);
+            return RedirectToAction("AdminBlogList");
+        }
+
     }
 }

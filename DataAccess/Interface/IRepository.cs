@@ -15,5 +15,6 @@ namespace DataAccess.Interface
         int Delete(T p);
         T GetById(int id);
         List<T> List(Expression<Func<T, bool>> filter);//istenilen şarta göre search yapılmasını sağlar
+        T Find(Expression<Func<T, bool>> where);
     }
 }

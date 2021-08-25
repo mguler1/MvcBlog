@@ -2454,6 +2454,10 @@
     <Content Include="Views\Blog\BlogByCategory.cshtml" />
     <Content Include="Views\SubScribe\AddMail.cshtml" />
     <Content Include="Views\Contact\SendMessage.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Blog\AdminBlogList.cshtml" />
+    <Content Include="Views\Blog\AddNewBlog.cshtml" />
+    <Content Include="Views\Blog\UpdateBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
