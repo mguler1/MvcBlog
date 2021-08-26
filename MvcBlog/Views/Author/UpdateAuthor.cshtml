@@ -1,0 +1,20 @@
+﻿@model Entity.Concrete.Author
+@{
+    ViewBag.Title = "UpdateAuthor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @Html.Label("Yazar Id")
+    @Html.TextBoxFor(x => x.AuthorId, new { @class = "form-control" })
+    @Html.Label("Yazar Adı")
+    @Html.TextBoxFor(x => x.AuthorName, new { @class = "form-control" })
+
+    @Html.Label("Yazar Bilgisi")
+    @Html.TextBoxFor(x => x.AuthorAbout, new { @class = "form-control" })
+    @Html.Label("Resim")
+    @Html.TextBoxFor(x => x.AuthorImage, new { @class = "form-control" })
+
+    <br />
+    <button class="btn btn-sm- btn-primary">Kaydet</button>
+</form>
