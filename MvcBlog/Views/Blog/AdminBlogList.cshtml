@@ -23,9 +23,9 @@
             <td>@item.Author.AuthorName </td>
             <td>
                 <a href="/Blog/Updateblog/@item.BlogId" class="btn btn-secondary btn-sm">Düzenle</a>
-                <a href="" class="btn btn-info btn-sm">Detaylar</a>
+                <a href="/Blog/BlogDetails/@item.BlogId" class="btn btn-info btn-sm">Detaylar</a>
                 <a href="/Blog/DeleteBlog/@item.BlogId" class="btn btn-danger btn-sm">Sil</a>
-                <a href="" class="btn btn-success btn-sm">Yorumlar</a>
+                <a href="/Blog/GetCommentByBlog/@item.BlogId" class="btn btn-success btn-sm">Yorumlar</a>
             </td>
         </tr>
     }

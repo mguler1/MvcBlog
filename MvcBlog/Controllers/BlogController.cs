@@ -145,6 +145,11 @@ namespace MvcBlog.Controllers
             bm.UpdateBlog(p);
             return RedirectToAction("AdminBlogList");
         }
-
+        public ActionResult GetCommentByBlog(int id)
+        {
+            CommentManager cm = new CommentManager();
+            var commentlist = cm.CommentByBlog(id);
+            return View(commentlist);
+        }
     }
 }
