@@ -23,6 +23,10 @@ namespace Business.Concrete
         {
             return repocomment.List(x => x.CommentStatus == true);
         }
+        public List<Comment> CommentByStatusFalse()
+        {
+            return repocomment.List(x => x.CommentStatus == false);
+        }
         public int CommentAdd(Comment c)
         {
             if (c.CommentText.Length <= 10 || c.CommentText.Length >= 301 || c.UserName=="" ||c.Mail=="" ||c.UserName.Length<=3)
@@ -35,6 +39,12 @@ namespace Business.Concrete
         {
             Comment com = repocomment.Find(x => x.CommentId ==id);
             com.CommentStatus = false;
+            return repocomment.Update(com);
+        }
+        public int CommentStatusChangeTrue(int id)
+        {
+            Comment com = repocomment.Find(x => x.CommentId == id);
+            com.CommentStatus = true;
             return repocomment.Update(com);
         }
     }
