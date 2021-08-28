@@ -2464,6 +2464,7 @@
     <Content Include="Views\Author\UpdateAuthor.cshtml" />
     <Content Include="Views\Comment\AdminCommentList.cshtml" />
     <Content Include="Views\Comment\AdminCommentListFalse.cshtml" />
+    <Content Include="Views\Category\AdminCategoryList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
