@@ -15,6 +15,16 @@ namespace Business.Concrete
         {
             return Aboutrepo.List();
         }
+        public int updateAbout(About a)
+        {
+            About about = Aboutrepo.Find(x => x.AboutId == a.AboutId);
+            about.AboutContent = a.AboutContent;
+            about.AboutContent2 = a.AboutContent2;
+            about.AboutImage = a.AboutImage;
+            about.AboutImage2 = a.AboutImage2;
+            about.AboutId = a.AboutId;
+            return Aboutrepo.Update(about);
+        }
 
     }
 }
