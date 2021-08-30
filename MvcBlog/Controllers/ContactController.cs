@@ -26,5 +26,15 @@ namespace MvcBlog.Controllers
             cm.BlContactAdd(x);
             return View();
         }
+        public ActionResult SendBox()
+        {
+            var contactlist = cm.GetAll();
+            return View(contactlist);
+        }
+        public ActionResult MessageDetails(int id)
+        {
+            Contact contact = cm.MessageDetail(id);
+            return View(contact);
+        }
     }
 }

@@ -19,5 +19,13 @@ namespace Business.Concrete
             }
             return contact.Insert(x);
         }
+        public List <Contact> GetAll()
+        {
+            return contact.List();
+        }
+        public Contact MessageDetail(int id)
+        {
+            return contact.Find(x => x.ContactId == id);
+        }
     }
 }

@@ -2466,6 +2466,8 @@
     <Content Include="Views\Comment\AdminCommentListFalse.cshtml" />
     <Content Include="Views\Category\AdminCategoryList.cshtml" />
     <Content Include="Views\About\UpdateAbout.cshtml" />
+    <Content Include="Views\Contact\SendBox.cshtml" />
+    <Content Include="Views\Contact\MessageDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
