@@ -13,5 +13,10 @@ namespace MvcBlog.Controllers
         {
             return View();
         }
+        [Authorize]
+        public ActionResult BlogList()
+        {
+            return View();
+        }
     }
 }

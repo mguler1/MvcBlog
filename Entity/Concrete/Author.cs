@@ -17,6 +17,9 @@ namespace Entity.Concrete
         public string AuthorImage { get; set; }
         [StringLength(250)]
         public string AuthorAbout { get; set; }
+        [StringLength(50)]
+        public string MailAdress { get; set; }
+        public string Password { get; set; }
 
         public ICollection<Blog> Blogs { get; set; }
     }
