@@ -2588,6 +2588,7 @@
     <Content Include="Views\Shared\_AuthorLayout.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Login\AuthorLogin.cshtml" />
+    <Content Include="Views\User\PartialProfile.cshtml" />
     <Content Include="Views\User\BlogList.cshtml" />
   </ItemGroup>
   <ItemGroup>
