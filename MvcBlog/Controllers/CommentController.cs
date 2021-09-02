@@ -14,6 +14,8 @@ namespace MvcBlog.Controllers
         CommentManager cm = new CommentManager();
         public PartialViewResult CommentList(int id)
         {
+            var commentcount = cm.CommentList().Count(x=>x.BlogId==id);
+            ViewBag.a = commentcount;
             var commentlist = cm.CommentByBlog(id);
             return PartialView(commentlist);
         }
