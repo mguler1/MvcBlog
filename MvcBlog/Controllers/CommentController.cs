@@ -31,6 +31,7 @@ namespace MvcBlog.Controllers
         [AllowAnonymous]
         public PartialViewResult LeaveComment(Comment c)
         {
+            c.CommentStatus = true;
             cm.CommentAdd(c);
             return PartialView();
         }

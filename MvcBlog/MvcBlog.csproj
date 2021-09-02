@@ -2034,6 +2034,7 @@
     <Content Include="miniblog\fonts\icomoon\Read Me.txt" />
     <Content Include="miniblog\fonts\icomoon\style.css" />
     <Content Include="miniblog\images\cebupacific-booking.jpg" />
+    <Content Include="miniblog\images\comment.png" />
     <Content Include="miniblog\images\hero_1.jpg" />
     <Content Include="miniblog\images\img_1.jpg" />
     <Content Include="miniblog\images\img_2.jpg" />
