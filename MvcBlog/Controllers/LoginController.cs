@@ -39,5 +39,23 @@ namespace MvcBlog.Controllers
         {
             return View();
         }
+    
+    [HttpPost]
+    public ActionResult AdminLogin(Admin b)
+    {
+        Context c = new Context();
+        var admininfo = c.Admins.FirstOrDefault(x => x.UserName == b.UserName && x.Password == b.Password);
+        if (admininfo != null)
+        {
+            FormsAuthentication.SetAuthCookie(admininfo.UserName, false);
+            Session["UserName"] = admininfo.UserName.ToString();
+            return RedirectToAction("AdminBlogList", "Blog");
+        }
+        else
+        {
+            return RedirectToAction("AdminLogin", "Login");
+        }
+
     }
+}
 }

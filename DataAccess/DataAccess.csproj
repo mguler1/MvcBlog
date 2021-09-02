@@ -93,6 +93,10 @@
     <Compile Include="Migrations\202108310824200_authorupdate.designer.cs">
       <DependentUpon>202108310824200_authorupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109021407369_addadminrole.cs" />
+    <Compile Include="Migrations\202109021407369_addadminrole.designer.cs">
+      <DependentUpon>202109021407369_addadminrole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -131,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108310824200_authorupdate.resx">
       <DependentUpon>202108310824200_authorupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109021407369_addadminrole.resx">
+      <DependentUpon>202109021407369_addadminrole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
