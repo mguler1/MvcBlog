@@ -11,6 +11,7 @@ namespace MvcBlog.Controllers
 {
     public class LoginController : Controller
     {
+        [AllowAnonymous]
         // GET: Login
         [HttpGet]
         public ActionResult AuthorLogin()
