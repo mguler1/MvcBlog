@@ -2592,6 +2592,7 @@
     <Content Include="Views\User\PartialProfile.cshtml" />
     <Content Include="Views\User\BlogList.cshtml" />
     <Content Include="Views\Login\AdminLogin.cshtml" />
+    <Content Include="Views\Blog\AuthorBlogList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

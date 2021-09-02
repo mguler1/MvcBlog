@@ -9,9 +9,10 @@ using System.Web.Security;
 
 namespace MvcBlog.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
-        [AllowAnonymous]
+      
         // GET: Login
         [HttpGet]
         public ActionResult AuthorLogin()
