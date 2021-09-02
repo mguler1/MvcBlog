@@ -8,8 +8,10 @@ using System.Web.Mvc;
 
 namespace MvcBlog.Controllers
 {
+    [AllowAnonymous]
     public class AboutController : Controller
     {
+       
         // GET: About
         AboutManager abm = new AboutManager();
         public ActionResult Index()

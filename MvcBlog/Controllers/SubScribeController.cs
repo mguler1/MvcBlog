@@ -10,6 +10,7 @@ namespace MvcBlog.Controllers
 {
     public class SubScribeController : Controller
     {
+        [AllowAnonymous]
         // GET: SubScribe
         [HttpGet]
         public PartialViewResult AddMail()
@@ -17,6 +18,7 @@ namespace MvcBlog.Controllers
             return PartialView();
         }
         [HttpPost]
+     
         public PartialViewResult AddMail(SubScribe x)
         {
             SubScribeManager sm = new SubScribeManager();

@@ -12,6 +12,7 @@ namespace MvcBlog.Controllers
     {
         // GET: Comment
         CommentManager cm = new CommentManager();
+        [AllowAnonymous]
         public PartialViewResult CommentList(int id)
         {
             var commentcount = cm.CommentList().Count(x=>x.BlogId==id);
@@ -19,6 +20,7 @@ namespace MvcBlog.Controllers
             var commentlist = cm.CommentByBlog(id);
             return PartialView(commentlist);
         }
+        [AllowAnonymous]
         [HttpGet]
         public PartialViewResult LeaveComment(int id)
         {
@@ -26,6 +28,7 @@ namespace MvcBlog.Controllers
             return PartialView();
         }
         [HttpPost]
+        [AllowAnonymous]
         public PartialViewResult LeaveComment(Comment c)
         {
             cm.CommentAdd(c);
