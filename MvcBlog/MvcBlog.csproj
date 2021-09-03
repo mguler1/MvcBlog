@@ -2593,6 +2593,8 @@
     <Content Include="Views\User\BlogList.cshtml" />
     <Content Include="Views\Login\AdminLogin.cshtml" />
     <Content Include="Views\Blog\AuthorBlogList.cshtml" />
+    <Content Include="Views\Category\AdminCategoryAdd.cshtml" />
+    <Content Include="Views\Category\UpdateCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
