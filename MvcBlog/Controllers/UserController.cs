@@ -37,7 +37,7 @@ namespace MvcBlog.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("AuthorLogin", "Login");
+            return RedirectToAction("AdminLogin", "Login");
         }
     }
 }
