@@ -29,7 +29,7 @@ namespace Business.Concrete
         }
         public int CommentAdd(Comment c)
         {
-            if (c.CommentText.Length <= 10 || c.CommentText.Length >= 301 || c.UserName=="" ||c.Mail=="" ||c.UserName.Length<=3)
+            if (c.CommentText.Length <= 1 || c.CommentText.Length >= 301 || c.UserName == "" || c.Mail == "" || c.UserName.Length <= 3)
             {
                 return -1;
             }
