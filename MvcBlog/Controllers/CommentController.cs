@@ -29,13 +29,20 @@ namespace MvcBlog.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        public PartialViewResult LeaveComment(Comment c)
+        //public PartialViewResult LeaveComment(Comment c)
+        //{
+        //    c.CommentStatus = true;
+        //    cm.CommentAdd(c);
+        //    return PartialView();
+        //}
+        public RedirectToRouteResult LeaveComment(Comment c)
         {
+            c.CommentDate = DateTime.Now;
             c.CommentStatus = true;
             cm.CommentAdd(c);
-            return PartialView();
+            return RedirectToAction("BlogDetails/" + c.BlogId, "Blog", new { area = "" });
         }
-        public ActionResult AdminCommentList()
+            public ActionResult AdminCommentList()
         {
             var commentlist = cm.CommentByStatus();
             return View(commentlist);

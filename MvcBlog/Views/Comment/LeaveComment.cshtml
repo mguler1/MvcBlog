@@ -1,31 +1,34 @@
-﻿<div class="comment-form-wrap pt-5">
-    <h3 class="mb-5">Bir Yorum Yazın</h3>
-    <form method="post" class="p-5 bg-light">
-        <div class="form-group">
-            <label for="name">Kullanıcı Adımız *</label>
-            <input type="text" class="form-control" name="UserName">
-        </div>
-        <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" class="form-control" name="Mail">
-        </div>
-        <input type="hidden" name="CommentDate" value="@DateTime.Now.ToShortTimeString()" />
-        <input type="hidden" name="BlogId" value="@ViewBag.id" />
-        <div class="form-group">
-            <label for="message">Yorumunuz</label>
-            <textarea name="CommentText" cols="30" rows="10" class="form-control"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="message">Puanınız:</label>
-            <label>@Html.RadioButton("BlogRating",1)1</label>
-            <label>@Html.RadioButton("BlogRating",2)2</label>
-            <label>@Html.RadioButton("BlogRating",3)3</label>
-            <label>@Html.RadioButton("BlogRating",4)4</label>
-            <label>@Html.RadioButton("BlogRating",5)5</label>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Gönder" class="btn btn-primary">
-        </div>
+﻿@model Entity.Concrete.Comment
+    <div class="comment-form-wrap pt-5">
+        <h3 class="mb-5">Yorum yazın...</h3>
+        @using (Html.BeginForm("LeaveComment", "Comment", FormMethod.Post))
+        {
+            <input name="BlogId" type="hidden" value="@ViewBag.Id" />
+            <div class="form-group">
+                @Html.Label("İsim *")
+                @Html.TextBoxFor(x => x.UserName, new { @PlaceHolder = "İsim Giriniz..", @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Email *")
+                @Html.TextBoxFor(x => x.Mail, new { @PlaceHolder = "İsim Giriniz..", @class = "form-control", @type = "email" })
+            </div>
 
-    </form>
-</div>
+            <div class="form-group">
+                @Html.Label("Yorumunuz *")
+                @Html.TextAreaFor(x => x.CommentText, new { @PlaceHolder = "Yorum Bırakınız...", @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="message">Puanınız:</label>
+                <label>@Html.RadioButton("BlogRating", 1)1</label>
+                <label>@Html.RadioButton("BlogRating", 2)2</label>
+                <label>@Html.RadioButton("BlogRating", 3)3</label>
+                <label>@Html.RadioButton("BlogRating", 4)4</label>
+                <label>@Html.RadioButton("BlogRating", 5)5</label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Yorum Yap." class="btn btn-primary">
+            </div>
+        }
+
+
+    </div>
