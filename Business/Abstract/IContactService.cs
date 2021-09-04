@@ -16,4 +16,4 @@ namespace Business.Abstract
         void ContactUpdate(Contact contact);
     }
 }
-}
+
