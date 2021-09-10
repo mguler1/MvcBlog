@@ -170,5 +170,6 @@ namespace MvcBlog.Controllers
             var blogs = bm.GetBlogByAuthor(id);
             return View(blogs);
         }
+     
     }
 }
