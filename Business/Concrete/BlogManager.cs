@@ -27,24 +27,24 @@ namespace Business.Concrete
         {
             return blogrepo.List(x => x.CategoryId == id);
         }
-        public int AddBlog(Blog b)
+        public void AddBlog(Blog b)
         {
-            if (b.BlogTitle=="" ||b.BlogImage=="" ||b.BlogContent=="")
-            {
-                return -1;
-            }
-          return  blogrepo.Insert(b);
+            //if (b.BlogTitle=="" ||b.BlogImage=="" ||b.BlogContent=="")
+            //{
+            //    return -1;
+            //}
+            blogrepo.Insert(b);
         }
-        public int DeleteBlog(int z)
+        public void DeleteBlog(int z)
         {
           Blog blog= blogrepo.Find(x => x.BlogId == z);
-            return blogrepo.Delete(blog);
+             blogrepo.Delete(blog);
         }
         public  Blog FindBlog(int getId)
         {
             return blogrepo.Find(x => x.BlogId == getId);
         }
-        public int UpdateBlog(Blog p)
+        public void UpdateBlog(Blog p)
         {
             Blog blog = blogrepo.Find(x => x.BlogId == p.BlogId);
             blog.BlogTitle = p.BlogTitle;
@@ -54,7 +54,7 @@ namespace Business.Concrete
             blog.BlogImage = p.BlogImage;
             blog.CategoryId = p.CategoryId;
             blog.AuthorId = p.AuthorId;
-            return blogrepo.Update(blog);
+             blogrepo.Update(blog);
         }
     }
 }

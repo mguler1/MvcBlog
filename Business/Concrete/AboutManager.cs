@@ -15,7 +15,7 @@ namespace Business.Concrete
         {
             return Aboutrepo.List();
         }
-        public int updateAbout(About a)
+        public void updateAbout(About a)
         {
             About about = Aboutrepo.Find(x => x.AboutId == a.AboutId);
             about.AboutContent = a.AboutContent;
@@ -23,7 +23,7 @@ namespace Business.Concrete
             about.AboutImage = a.AboutImage;
             about.AboutImage2 = a.AboutImage2;
             about.AboutId = a.AboutId;
-            return Aboutrepo.Update(about);
+            Aboutrepo.Update(about);
         }
 
     }

@@ -19,14 +19,9 @@ namespace Business.Concrete
         {
             _categoryDal = categoryDal;
         }
-        public int EditCategory(Category p)
+        public void EditCategory(Category p)
         {
-            Category category = repocategory.Find(x => x.CategoryId == p.CategoryId);
-            category.CategoryName = p.CategoryName;
-            category.CategoryId = p.CategoryId;
-            category.CategoryDescription = p.CategoryDescription;
-            
-            return repocategory.Update(category);
+             repocategory.Update(p);
         }
 
         public List<Category> GetList()

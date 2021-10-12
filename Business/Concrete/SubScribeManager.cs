@@ -11,13 +11,13 @@ namespace Business.Concrete
     public class SubScribeManager
     {
         Repository<SubScribe> repoSubscribe = new Repository<SubScribe>();
-        public int BlAdd(SubScribe s)
+        public void BlAdd(SubScribe s)
         {
             //if (s.Mail.Length<=10 || s.Mail.Length>=50)
             //{
             //    return -1;
             //}
-            return repoSubscribe.Insert(s);
+             repoSubscribe.Insert(s);
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Business.Concrete;
+using Business.ValidationRules;
 using DataAccess.Ef;
 using DataAccess.Interface;
 using Entity.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,8 +39,21 @@ namespace MvcBlog.Controllers
         [HttpPost]
         public ActionResult AdminCategoryAdd(Category ca)
         {
-            cm.CategoryAdd(ca);
-            return RedirectToAction("AdminCategoryList");
+            CategoryValidator categoryvalidator = new CategoryValidator();
+            ValidationResult result = categoryvalidator.Validate(ca);
+            if (result.IsValid)
+            {
+                cm.CategoryAdd(ca);
+                return RedirectToAction("AdminCategoryList");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
         [HttpGet]
         public ActionResult UpdateCategory(int id)
@@ -50,6 +65,10 @@ namespace MvcBlog.Controllers
         public ActionResult UpdateCategory(Category a)
         {
             cm.EditCategory(a);
+            return RedirectToAction("AdminCategoryList");
+        }
+        public ActionResult DeleteCategory(int  id)
+        {
             return RedirectToAction("AdminCategoryList");
         }
     }

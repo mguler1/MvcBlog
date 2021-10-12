@@ -27,25 +27,25 @@ namespace Business.Concrete
         {
             return repocomment.List(x => x.CommentStatus == false);
         }
-        public int CommentAdd(Comment c)
+        public void CommentAdd(Comment c)
         {
-            if (c.CommentText.Length <= 1 || c.CommentText.Length >= 301 || c.UserName == "" || c.Mail == "" || c.UserName.Length <= 3)
-            {
-                return -1;
-            }
-            return repocomment.Insert(c);
+        //    if (c.CommentText.Length <= 1 || c.CommentText.Length >= 301 || c.UserName == "" || c.Mail == "" || c.UserName.Length <= 3)
+        //    {
+        //        return -1;
+        //    }
+             repocomment.Insert(c);
         }
-        public int UpdateCommentStatusToFalse(int id )
+        public void UpdateCommentStatusToFalse(int id )
         {
             Comment com = repocomment.Find(x => x.CommentId ==id);
             com.CommentStatus = false;
-            return repocomment.Update(com);
+             repocomment.Update(com);
         }
-        public int CommentStatusChangeTrue(int id)
+        public void CommentStatusChangeTrue(int id)
         {
             Comment com = repocomment.Find(x => x.CommentId == id);
             com.CommentStatus = true;
-            return repocomment.Update(com);
+             repocomment.Update(com);
         }
     }
 }

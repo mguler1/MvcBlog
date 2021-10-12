@@ -10,9 +10,9 @@ namespace DataAccess.Interface
  public   interface IRepository<T>
     {
         List<T> List();
-        int Insert(T p);
-        int Update(T p);
-        int Delete(T p);
+        void Insert(T p);
+        void Update(T p);
+        void Delete(T p);
         T GetById(int id);
         List<T> List(Expression<Func<T, bool>> filter);//istenilen şarta göre search yapılmasını sağlar
         T Find(Expression<Func<T, bool>> where);
