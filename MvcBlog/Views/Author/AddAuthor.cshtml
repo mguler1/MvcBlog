@@ -7,9 +7,12 @@
 <form class="form-group" method="post">
     @Html.Label("Yazar Adı")
     @Html.TextBoxFor(x => x.AuthorName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuthorName)
 
     @Html.Label("Yazar Bilgisi")
     @Html.TextBoxFor(x => x.AuthorAbout, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuthorAbout)
+
     @Html.Label("Yazar Mail")
     @Html.TextBoxFor(x => x.MailAdress, new { @class = "form-control" })
     @Html.Label("Resim")

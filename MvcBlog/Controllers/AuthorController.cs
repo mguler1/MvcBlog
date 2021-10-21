@@ -1,5 +1,8 @@
 ﻿using Business.Concrete;
+using Business.ValidationRules;
+using DataAccess.Ef;
 using Entity.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +15,7 @@ namespace MvcBlog.Controllers
     {
         // GET: Author
         BlogManager bm = new BlogManager();
-        AuthorManager amn = new AuthorManager();
+        AuthorManager amn = new AuthorManager(new EfAuthorDal());
 
         [AllowAnonymous]
         public PartialViewResult AuthorAbout(int id)
@@ -30,7 +33,7 @@ namespace MvcBlog.Controllers
         }
         public ActionResult AuthorList()
         {
-            var list = amn.GetAll();
+            var list = amn.GetList();
             return View(list);
         }
         public ActionResult AddAuthor()
@@ -40,20 +43,47 @@ namespace MvcBlog.Controllers
         [HttpPost]
         public ActionResult AddAuthor(Author a)
         {
-            amn.AddAuthor(a);
-            return RedirectToAction("AuthorList");
+            AuthorValidator authorvalidator = new AuthorValidator();
+            ValidationResult result = authorvalidator.Validate(a);
+            if (result.IsValid)
+            {
+                amn.AuthorAdd(a);
+                return RedirectToAction("AuthorList");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
         [HttpGet]
         public ActionResult UpdateAuthor(int id)
         {
-            Author author = amn.FindAuthor(id);
+            Author author = amn.GetById(id);
             return View(author);
         }
         [HttpPost]
         public ActionResult UpdateAuthor(Author a)
         {
-            amn.UpdateAuthor(a);
-            return RedirectToAction("AuthorList");
+            AuthorValidator authorvalidator = new AuthorValidator();
+            ValidationResult result = authorvalidator.Validate(a);
+            if (result.IsValid)
+            {
+                amn.AuthorUpdate(a);
+                return RedirectToAction("AuthorList");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+           
         }
     }
 }

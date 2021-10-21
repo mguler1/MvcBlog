@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Ef;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,8 @@ namespace MvcBlog.Controllers
         }
         public PartialViewResult MeetTheTeam()
         {
-            AuthorManager auth = new AuthorManager();
-            var outhorlist = auth.GetAll();
+            AuthorManager auth = new AuthorManager(new EfAuthorDal());
+            var outhorlist = auth.GetList();
             return PartialView(outhorlist);
         }
         [HttpGet]

@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repository.cs" />
+    <Compile Include="Ef\EfAuthorDal.cs" />
     <Compile Include="Ef\EfCategoryDal.cs" />
     <Compile Include="Interface\IAdminDal.cs" />
     <Compile Include="Interface\IAuthorDal.cs" />
