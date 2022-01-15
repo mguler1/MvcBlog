@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using Business.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Interface;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,13 +10,19 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class BlogManager
+    public class BlogManager:IBlogService
     {
+        IBlogDal _blogdal;
+
+
         Repository<Blog> blogrepo = new Repository<Blog>();
-        public List<Blog> GetAll()
+
+        public BlogManager(IBlogDal blogdal)
         {
-            return blogrepo.List();
+            _blogdal = blogdal;
         }
+
+       
         public List<Blog> GetBlogById(int id)
         {
             return blogrepo.List(x => x.BlogId == id);
@@ -27,34 +35,34 @@ namespace Business.Concrete
         {
             return blogrepo.List(x => x.CategoryId == id);
         }
-        public void AddBlog(Blog b)
+      
+   
+   
+      
+
+        public List<Blog> GetList()
         {
-            //if (b.BlogTitle=="" ||b.BlogImage=="" ||b.BlogContent=="")
-            //{
-            //    return -1;
-            //}
-            blogrepo.Insert(b);
+           return  _blogdal.List();
         }
-        public void DeleteBlog(int z)
+
+        public void BlogAdd(Blog blog)
         {
-          Blog blog= blogrepo.Find(x => x.BlogId == z);
-             blogrepo.Delete(blog);
+            _blogdal.Insert(blog);
         }
-        public  Blog FindBlog(int getId)
+
+        public Blog GetById(int id)
         {
-            return blogrepo.Find(x => x.BlogId == getId);
+            return _blogdal.GetById(id);
         }
-        public void UpdateBlog(Blog p)
+
+        public void BlogDelete(Blog blog)
         {
-            Blog blog = blogrepo.Find(x => x.BlogId == p.BlogId);
-            blog.BlogTitle = p.BlogTitle;
-            blog.BlogContent = p.BlogContent;
-            blog.BlogContent = p.BlogContent;
-            blog.BlogDate = p.BlogDate;
-            blog.BlogImage = p.BlogImage;
-            blog.CategoryId = p.CategoryId;
-            blog.AuthorId = p.AuthorId;
-             blogrepo.Update(blog);
+            _blogdal.Delete(blog);
+        }
+
+        public void BlogUpdate(Blog blog)
+        {
+            _blogdal.Update(blog);
         }
     }
 }
