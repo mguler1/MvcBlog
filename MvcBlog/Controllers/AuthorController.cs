@@ -14,7 +14,7 @@ namespace MvcBlog.Controllers
     public class AuthorController : Controller
     {
         // GET: Author
-        BlogManager bm = new BlogManager();
+        BlogManager bm = new BlogManager(new EfBlogDal());
         AuthorManager amn = new AuthorManager(new EfAuthorDal());
 
         [AllowAnonymous]
@@ -26,7 +26,7 @@ namespace MvcBlog.Controllers
         [AllowAnonymous]
         public PartialViewResult AuthorPopularPost(int id)
         {
-            var blogauthorId = bm.GetAll().Where(x => x.BlogId == id).Select(y=>y.AuthorId).FirstOrDefault();
+            var blogauthorId = bm.GetList().Where(x => x.BlogId == id).Select(y=>y.AuthorId).FirstOrDefault();
          
             var authorblogs = bm.GetBlogByAuthor(blogauthorId);
             return PartialView(authorblogs);
