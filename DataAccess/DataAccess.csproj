@@ -63,6 +63,7 @@
     <Compile Include="Interface\ICategoryDal.cs" />
     <Compile Include="Interface\ICommentDal.cs" />
     <Compile Include="Interface\IContactDal.cs" />
+    <Compile Include="Interface\IMailDal.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Migrations\202108171119445_Initial.cs" />
     <Compile Include="Migrations\202108171119445_Initial.designer.cs">

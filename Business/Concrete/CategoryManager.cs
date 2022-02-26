@@ -10,18 +10,26 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class CategoryManager:ICategoryService
+    public class CategoryManager : ICategoryService
     {
         Repository<Category> repocategory = new Repository<Category>();
-       ICategoryDal _categoryDal;
+        ICategoryDal _categoryDal;
 
         public CategoryManager(ICategoryDal categoryDal)
         {
             _categoryDal = categoryDal;
         }
-        public void EditCategory(Category p)
+        public void CategoryStatusFalseBL(int id)
         {
-             repocategory.Update(p);
+            Category category = _categoryDal.Find(x => x.CategoryId == id);
+            //category.CategoryStatus = false;
+            _categoryDal.Update(category);
+        }
+        public void CategoryStatusTrueBL(int id)
+        {
+            Category category = _categoryDal.Find(x => x.CategoryId == id);
+            //category.CategoryStatus = true;
+            _categoryDal.Update(category);
         }
 
         public List<Category> GetList()
@@ -29,24 +37,24 @@ namespace Business.Concrete
             return _categoryDal.List();
         }
 
-        public Category GetById(int id)
+        public Category GetByID(int id)
         {
             return _categoryDal.GetById(id);
         }
 
-        public void CategoryDelete(Category category)
+        public void TAdd(Category t)
         {
-            _categoryDal.Delete(category);
+            _categoryDal.Insert(t);
         }
 
-        public void CategoryUpdate(Category category)
+        public void TDelete(Category t)
         {
-            _categoryDal.Update(category);
+            _categoryDal.Delete(t);
         }
 
-        public void CategoryAdd(Category category)
+        public void TUpdate(Category t)
         {
-            _categoryDal.Insert(category);
+            _categoryDal.Update(t);
         }
     }
 }

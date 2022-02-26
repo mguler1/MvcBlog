@@ -10,59 +10,56 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class BlogManager:IBlogService
+    public class BlogManager : IBlogService
     {
-        IBlogDal _blogdal;
+        IBlogDal _blogDal;
 
 
         Repository<Blog> blogrepo = new Repository<Blog>();
 
         public BlogManager(IBlogDal blogdal)
         {
-            _blogdal = blogdal;
+            _blogDal = blogdal;
+        }
+        public List<Blog> GetBlogByID(int id)
+        {
+            return _blogDal.List(x => x.BlogId == id);
         }
 
-       
-        public List<Blog> GetBlogById(int id)
-        {
-            return blogrepo.List(x => x.BlogId == id);
-        }
         public List<Blog> GetBlogByAuthor(int id)
         {
-            return blogrepo.List(x => x.AuthorId == id);
+            return _blogDal.List(x => x.AuthorId == id);
         }
         public List<Blog> GetBlogByCategory(int id)
         {
-            return blogrepo.List(x => x.CategoryId == id);
+            return _blogDal.List(x => x.CategoryId == id);
         }
-      
-   
-   
-      
 
         public List<Blog> GetList()
         {
-           return  _blogdal.List();
+            return _blogDal.List();
         }
 
-        public void BlogAdd(Blog blog)
+        public Blog GetByID(int id)
         {
-            _blogdal.Insert(blog);
+            return _blogDal.GetById(id);
         }
 
-        public Blog GetById(int id)
+        public void TAdd(Blog t)
         {
-            return _blogdal.GetById(id);
+            _blogDal.Insert(t);
         }
 
-        public void BlogDelete(Blog blog)
+        public void TDelete(Blog t)
         {
-            _blogdal.Delete(blog);
+            _blogDal.Delete(t);
         }
 
-        public void BlogUpdate(Blog blog)
+        public void TUpdate(Blog t)
         {
-            _blogdal.Update(blog);
+            _blogDal.Update(t);
         }
+
+
     }
 }

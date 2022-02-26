@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using Business.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Interface;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,44 +10,75 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-  public   class CommentManager
+  public   class CommentManager:ICommentService
+
     {
+        ICommentDal __commentDal;
         Repository<Comment> repocomment = new Repository<Comment>();
-         public List<Comment> CommentList()
+        public CommentManager(ICommentDal commentDal)
         {
-            return repocomment.List();
+            __commentDal= commentDal;
         }
+
         public List<Comment> CommentByBlog(int id)
         {
-            return repocomment.List(x=>x.BlogId==id);
+            return __commentDal.List(x => x.BlogId == id);
         }
-        public List<Comment>CommentByStatus()
+
+        public List<Comment> CommentByStatusTrue()
         {
-            return repocomment.List(x => x.CommentStatus == true);
+            return __commentDal.List(x => x.CommentStatus == true);
         }
+
         public List<Comment> CommentByStatusFalse()
         {
             return repocomment.List(x => x.CommentStatus == false);
         }
-        public void CommentAdd(Comment c)
+        public void CommentStatusChangeToFalse(int id)
         {
-        //    if (c.CommentText.Length <= 1 || c.CommentText.Length >= 301 || c.UserName == "" || c.Mail == "" || c.UserName.Length <= 3)
-        //    {
-        //        return -1;
-        //    }
-             repocomment.Insert(c);
+            Comment comment = __commentDal.Find(x => x.CommentId == id);
+            comment.CommentStatus = false;
+            __commentDal.Update(comment);
         }
-        public void UpdateCommentStatusToFalse(int id )
+        public void CommentStatusChangeToTrue(int id)
         {
-            Comment com = repocomment.Find(x => x.CommentId ==id);
-            com.CommentStatus = false;
-             repocomment.Update(com);
+            Comment comment = __commentDal.Find(x => x.CommentId == id);
+            comment.CommentStatus = true;
+            __commentDal.Update(comment);
         }
-        public void CommentStatusChangeTrue(int id)
+        public List<Comment> GetList()
         {
-            Comment com = repocomment.Find(x => x.CommentId == id);
-            com.CommentStatus = true;
-             repocomment.Update(com);
+            throw new NotImplementedException();
+        }
+
+        public Comment GetByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CommentDelete(Comment comment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CommentUpdate(Comment comment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TAdd(Comment t)
+        {
+            __commentDal.Insert(t);
+        }
+
+        public void TDelete(Comment t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(Comment t)
+        {
+            throw new NotImplementedException();
         }
     }
 }

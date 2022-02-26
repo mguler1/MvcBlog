@@ -20,33 +20,29 @@ namespace Business.Concrete
             _authorDal = authorDal;
         }
 
-      
-       
-      
+        public Author GetByID(int id)
+        {
+            return _authorDal.GetById(id);
+        }
 
         public List<Author> GetList()
         {
             return _authorDal.List();
         }
 
-        public void AuthorAdd(Author author)
+        public void TAdd(Author t)
         {
-            _authorDal.Insert(author);
+            _authorDal.Insert(t);
         }
 
-        public Author GetById(int id)
-        {
-            return _authorDal.GetById(id);
-        }
-
-        public void AuthorDelete(Author author)
+        public void TDelete(Author t)
         {
             throw new NotImplementedException();
         }
 
-        public void AuthorUpdate(Author author)
+        public void TUpdate(Author t)
         {
-            _authorDal.Update(author);
+            _authorDal.Update(t);
         }
     }
 }
