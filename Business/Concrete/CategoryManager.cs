@@ -22,13 +22,13 @@ namespace Business.Concrete
         public void CategoryStatusFalseBL(int id)
         {
             Category category = _categoryDal.Find(x => x.CategoryId == id);
-            //category.CategoryStatus = false;
+            category.CategoryStatus = false;
             _categoryDal.Update(category);
         }
         public void CategoryStatusTrueBL(int id)
         {
             Category category = _categoryDal.Find(x => x.CategoryId == id);
-            //category.CategoryStatus = true;
+            category.CategoryStatus = true;
             _categoryDal.Update(category);
         }
 

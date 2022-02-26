@@ -22,16 +22,16 @@ namespace Business.Concrete
         }
         public void EditAuthor(Author p)
         {
-            //Author author = Authorrepo.Find(x => x.AuthorId == p.AuthorId);
-            //author.AboutShort = p.AboutShort;
-            //author.AuthorName = p.AuthorName;
-            //author.AuthorImage = p.AuthorImage;
-            //author.AuthorAbout = p.AuthorAbout;
-            //author.AuthorTitle = p.AuthorTitle;
-            //author.Mail = p.Mail;
-            //author.Password = p.Password;
-            //author.PhoneNumber = p.PhoneNumber;
-            //Authorrepo.Update(author);
+            Author author = Authorrepo.Find(x => x.AuthorId == p.AuthorId);
+            author.AboutShort = p.AboutShort;
+            author.AuthorName = p.AuthorName;
+            author.AuthorImage = p.AuthorImage;
+            author.AuthorAbout = p.AuthorAbout;
+            author.AuthorTitle = p.AuthorTitle;
+            author.MailAdress = p.MailAdress;
+            author.Password = p.Password;
+            author.PhoneNumber = p.PhoneNumber;
+            Authorrepo.Update(author);
         }
     }
 }

@@ -13,37 +13,36 @@ namespace Business.Concrete
     public class SubscribeMailManager : IMailService
     {
 
-        //IMailDal _maildal;
+        IMailDal _maildal;
 
-        //public SubscribeMailManager(IMailDal maildal)
-        //{
-        //    _maildal = maildal;
-        //}
+        public SubscribeMailManager(IMailDal maildal)
+        {
+            _maildal = maildal;
+        }
 
+        public SubScribe GetByID(int id)
+        {
+            return _maildal.GetById(id);
+        }
 
-        //public SubscribeMail GetByID(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public List<SubScribe> GetList()
+        {
+            return _maildal.List();
+        }
 
-        //public List<SubscribeMail> GetList()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void TAdd(SubScribe t)
+        {
+            _maildal.Insert(t);
+        }
 
-        //public void TAdd(SubscribeMail t)
-        //{
-        //    _maildal.Insert(t);
-        //}
+        public void TDelete(SubScribe t)
+        {
+            _maildal.Delete(t);
+        }
 
-        //public void TDelete(SubscribeMail t)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void TUpdate(SubscribeMail t)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void TUpdate(SubScribe t)
+        {
+            _maildal.Update(t);
+        }
     }
 }

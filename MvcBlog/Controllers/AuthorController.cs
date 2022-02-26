@@ -20,7 +20,7 @@ namespace MvcBlog.Controllers
         [AllowAnonymous]
         public PartialViewResult AuthorAbout(int id)
         {
-            var authordetail = bm.GetBlogById(id);
+            var authordetail = bm.GetByID(id);
             return PartialView(authordetail);
         }
         [AllowAnonymous]
@@ -47,7 +47,7 @@ namespace MvcBlog.Controllers
             ValidationResult result = authorvalidator.Validate(a);
             if (result.IsValid)
             {
-                amn.AuthorAdd(a);
+                amn.TAdd(a);
                 return RedirectToAction("AuthorList");
             }
             else
@@ -62,7 +62,7 @@ namespace MvcBlog.Controllers
         [HttpGet]
         public ActionResult UpdateAuthor(int id)
         {
-            Author author = amn.GetById(id);
+            Author author = amn.GetByID(id);
             return View(author);
         }
         [HttpPost]
@@ -72,7 +72,7 @@ namespace MvcBlog.Controllers
             ValidationResult result = authorvalidator.Validate(a);
             if (result.IsValid)
             {
-                amn.AuthorUpdate(a);
+                amn.TUpdate(a);
                 return RedirectToAction("AuthorList");
             }
             else

@@ -43,7 +43,7 @@ namespace MvcBlog.Controllers
             ValidationResult result = categoryvalidator.Validate(ca);
             if (result.IsValid)
             {
-                cm.CategoryAdd(ca);
+                cm.TAdd(ca);
                 return RedirectToAction("AdminCategoryList");
             }
             else
@@ -58,17 +58,23 @@ namespace MvcBlog.Controllers
         [HttpGet]
         public ActionResult UpdateCategory(int id)
         {
-            Category category = cm.GetById(id);
+            Category category = cm.GetByID(id);
             return View(category);
         }
         [HttpPost]
         public ActionResult UpdateCategory(Category a)
         {
-            cm.EditCategory(a);
+            cm.TUpdate(a);
             return RedirectToAction("AdminCategoryList");
         }
         public ActionResult DeleteCategory(int  id)
         {
+            cm.CategoryStatusFalseBL(id);
+            return RedirectToAction("AdminCategoryList");
+        }
+        public ActionResult CategoryStatusTrue(int id)
+        {
+            cm.CategoryStatusTrueBL(id);
             return RedirectToAction("AdminCategoryList");
         }
     }

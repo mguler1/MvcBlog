@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
 using DataAccess.Ef;
+using DataAccessLayer.EntityFramework;
 using Entity.Concrete;
 using PagedList;
 using System;
@@ -15,6 +16,7 @@ namespace MvcBlog.Controllers
     {
         // GET: Blog
         BlogManager bm = new BlogManager(new EfBlogDal());
+        CommentManager cm = new CommentManager(new EfCommentDal());
 
         [AllowAnonymous]
         public ActionResult Index()
@@ -95,13 +97,13 @@ namespace MvcBlog.Controllers
         [AllowAnonymous]
         public PartialViewResult BlogCover(int id)
         {
-            var blogdetail = bm.GetBlogById(id);
+            var blogdetail = bm.GetBlogByID(id);
             return PartialView(blogdetail);
         }
         [AllowAnonymous]
         public PartialViewResult BlogReadAll(int id)
         {
-            var blogdetail = bm.GetBlogById(id);
+            var blogdetail = bm.GetBlogByID(id);
             return PartialView(blogdetail);
         }
         public PartialViewResult CommentPartial()
@@ -123,6 +125,12 @@ namespace MvcBlog.Controllers
             var bloglist = bm.GetList();
             return View(bloglist);
         }
+        public ActionResult AdminBlogList2()
+        {
+            var bloglist = bm.GetList();
+            return View(bloglist);
+        }
+        [Authorize(Roles = "A")]
         [HttpGet]
         public ActionResult AddNewBlog()
         {
@@ -136,12 +144,12 @@ namespace MvcBlog.Controllers
         [HttpPost]
         public ActionResult AddNewBlog(Blog b)
         {
-            bm.BlogAdd(b);
+            bm.TAdd(b);
             return RedirectToAction("AdminBlogList");
         }
         public ActionResult DeleteBlog(Blog id)
         {
-            bm.BlogDelete(id);
+            bm.TDelete(id);
             return RedirectToAction("AdminBlogList");
         }
         public ActionResult UpdateBlog(int id)
@@ -151,18 +159,18 @@ namespace MvcBlog.Controllers
             List<SelectListItem> values2 = (from x in c.Authors.ToList() select new SelectListItem { Text = x.AuthorName, Value = x.AuthorId.ToString() }).ToList();
             ViewBag.author = values2;
             ViewBag.category = values;
-            Blog blog = bm.GetById(id);
+            Blog blog = bm.GetByID(id);
             return View(blog);
         }
         [HttpPost]
         public ActionResult UpdateBlog(Blog p)
         {
-            bm.BlogUpdate(p);
+            bm.TUpdate(p);
             return RedirectToAction("AdminBlogList");
         }
         public ActionResult GetCommentByBlog(int id)
         {
-            CommentManager cm = new CommentManager();
+           
             var commentlist = cm.CommentByBlog(id);
             return View(commentlist);
         }
