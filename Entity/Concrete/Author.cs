@@ -20,6 +20,13 @@ namespace Entity.Concrete
         [StringLength(50)]
         public string MailAdress { get; set; }
         public string Password { get; set; }
+        [StringLength(50)]
+        public string AuthorTitle { get; set; }
+        [StringLength(20)]
+        public string PhoneNumber { get; set; }
+
+        [StringLength(250)]
+        public string AboutShort { get; set; }
 
         public ICollection<Blog> Blogs { get; set; }
     }

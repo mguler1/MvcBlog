@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccessLayer.EntityFramework;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,10 @@ namespace MvcBlog.Controllers
     public class CommentController : Controller
     {
         // GET: Comment
-        CommentManager cm = new CommentManager();
+        CommentManager cm = new CommentManager(new EfCommentDal());
         [AllowAnonymous]
         public PartialViewResult CommentList(int id)
         {
-            var commentcount = cm.CommentList().Count(x=>x.BlogId==id);
-            ViewBag.a = commentcount;
             var commentlist = cm.CommentByBlog(id);
             return PartialView(commentlist);
         }
@@ -29,22 +28,16 @@ namespace MvcBlog.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        //public PartialViewResult LeaveComment(Comment c)
-        //{
-        //    c.CommentStatus = true;
-        //    cm.CommentAdd(c);
-        //    return PartialView();
-        //}
-        public RedirectToRouteResult LeaveComment(Comment c)
+        public PartialViewResult LeaveComment(Comment c)
         {
-            c.CommentDate = DateTime.Now;
             c.CommentStatus = true;
-            cm.CommentAdd(c);
-            return RedirectToAction("BlogDetails/" + c.BlogId, "Blog", new { area = "" });
+            cm.TAdd(c);
+            return PartialView();
         }
-            public ActionResult AdminCommentList()
+      
+            public ActionResult AdminCommentListTrue()
         {
-            var commentlist = cm.CommentByStatus();
+            var commentlist = cm.CommentByStatusTrue();
             return View(commentlist);
         }
         public ActionResult AdminCommentListFalse()
@@ -55,12 +48,12 @@ namespace MvcBlog.Controllers
 
         public ActionResult UpdateCommentToFalse(int id )
         {
-            cm.UpdateCommentStatusToFalse(id);
+            cm.CommentStatusChangeToFalse(id);
             return RedirectToAction("AdminCommentList");
         }
         public ActionResult UpdateCommentToTrue(int id)
         {
-            cm.CommentStatusChangeTrue(id);
+            cm.CommentStatusChangeToFalse(id);
             return RedirectToAction("AdminCommentList");
         }
     }

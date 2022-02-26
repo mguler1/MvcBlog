@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using Business.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Interface;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,29 +10,51 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class CategoryManager
+    public class CategoryManager : ICategoryService
     {
         Repository<Category> repocategory = new Repository<Category>();
-        public List<Category> GetAll()
+        ICategoryDal _categoryDal;
+
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            return repocategory.List();
+            _categoryDal = categoryDal;
         }
-        public int CategoryAdd(Category c)
+        public void CategoryStatusFalseBL(int id)
         {
-            return repocategory.Insert(c);
+            Category category = _categoryDal.Find(x => x.CategoryId == id);
+            category.CategoryStatus = false;
+            _categoryDal.Update(category);
         }
-        public Category FindCategory(int getId)
+        public void CategoryStatusTrueBL(int id)
         {
-            return repocategory.Find(x => x.CategoryId == getId);
+            Category category = _categoryDal.Find(x => x.CategoryId == id);
+            category.CategoryStatus = true;
+            _categoryDal.Update(category);
         }
-        public int EditCategory(Category p)
+
+        public List<Category> GetList()
         {
-            Category category = repocategory.Find(x => x.CategoryId == p.CategoryId);
-            category.CategoryName = p.CategoryName;
-            category.CategoryId = p.CategoryId;
-            category.CategoryDescription = p.CategoryDescription;
-            
-            return repocategory.Update(category);
+            return _categoryDal.List();
+        }
+
+        public Category GetByID(int id)
+        {
+            return _categoryDal.GetById(id);
+        }
+
+        public void TAdd(Category t)
+        {
+            _categoryDal.Insert(t);
+        }
+
+        public void TDelete(Category t)
+        {
+            _categoryDal.Delete(t);
+        }
+
+        public void TUpdate(Category t)
+        {
+            _categoryDal.Update(t);
         }
     }
 }

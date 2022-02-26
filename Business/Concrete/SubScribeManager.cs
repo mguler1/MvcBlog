@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using BusinessLayer.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Interface;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,16 +10,39 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class SubScribeManager
+    public class SubscribeMailManager : IMailService
     {
-        Repository<SubScribe> repoSubscribe = new Repository<SubScribe>();
-        public int BlAdd(SubScribe s)
+
+        IMailDal _maildal;
+
+        public SubscribeMailManager(IMailDal maildal)
         {
-            //if (s.Mail.Length<=10 || s.Mail.Length>=50)
-            //{
-            //    return -1;
-            //}
-            return repoSubscribe.Insert(s);
+            _maildal = maildal;
+        }
+
+        public SubScribe GetByID(int id)
+        {
+            return _maildal.GetById(id);
+        }
+
+        public List<SubScribe> GetList()
+        {
+            return _maildal.List();
+        }
+
+        public void TAdd(SubScribe t)
+        {
+            _maildal.Insert(t);
+        }
+
+        public void TDelete(SubScribe t)
+        {
+            _maildal.Delete(t);
+        }
+
+        public void TUpdate(SubScribe t)
+        {
+            _maildal.Update(t);
         }
     }
 }

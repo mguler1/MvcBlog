@@ -17,10 +17,11 @@ namespace DataAccess.Concrete
         {
             _object = c.Set<T>();
         }
-        public int Delete(T p)
+        public void Delete(T p)
         {
-            _object.Remove(p);
-            return c.SaveChanges();
+            var deleteEntity = c.Entry(p);
+            deleteEntity.State = EntityState.Deleted;
+          c.SaveChanges();
         }
 
         public T Find(Expression<Func<T, bool>> where)
@@ -33,10 +34,11 @@ namespace DataAccess.Concrete
             return _object.Find(id);
         }
 
-        public int Insert(T p)
+        public void Insert(T p)
         {
-            _object.Add(p);
-            return c.SaveChanges();
+            var addedEntity = c.Entry(p);
+            addedEntity.State = EntityState.Added;
+             c.SaveChanges();
         }
 
         public List<T> List()
@@ -49,9 +51,11 @@ namespace DataAccess.Concrete
             return _object.Where(filter).ToList();
         }
 
-        public int Update(T p)
+        public void Update(T p)
         {
-            return c.SaveChanges();
+            var updateEntiy = c.Entry(p);
+            updateEntiy.State = EntityState.Modified;
+            c.SaveChanges();
         }
     }
 }

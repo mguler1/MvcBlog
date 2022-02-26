@@ -1,4 +1,6 @@
 ﻿using Business.Concrete;
+using DataAccess.Ef;
+using DataAccessLayer.EntityFramework;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -13,33 +15,33 @@ namespace MvcBlog.Controllers
     {
        
         // GET: About
-        AboutManager abm = new AboutManager();
+        AboutManager abm = new AboutManager(new EfAboutDal());
         public ActionResult Index()
         {
-            var aboutcontent = abm.GetAll();
+            var aboutcontent = abm.GetList();
             return View(aboutcontent);
         }
         public PartialViewResult Footer()
         {
-            var aboutContentlist=abm.GetAll();
+            var aboutContentlist=abm.GetList();
             return PartialView(aboutContentlist);
         }
         public PartialViewResult MeetTheTeam()
         {
-            AuthorManager auth = new AuthorManager();
-            var outhorlist = auth.GetAll();
+            AuthorManager auth = new AuthorManager(new EfAuthorDal());
+            var outhorlist = auth.GetList();
             return PartialView(outhorlist);
         }
         [HttpGet]
        public ActionResult UpdateAbout()
         {
-            var aboutlsit = abm.GetAll(); 
+            var aboutlsit = abm.GetList(); 
             return View(aboutlsit);
         }
         [HttpPost]
         public ActionResult UpdateAbout(About a)
         {
-            abm.updateAbout(a);
+            abm.TUpdate(a);
             return RedirectToAction("UpdateAbout");
         }
     }

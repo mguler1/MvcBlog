@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using Business.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Interface;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,24 +10,38 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-  public  class ContactManager
+  public  class ContactManager:IContactService
     {
+        IContactDal _contactdal;
         Repository<Contact> contact = new Repository<Contact>();
-        public int  BlContactAdd(Contact x)
+        public ContactManager(IContactDal contactdal)
         {
-            if (x.Mail=="" || x.Message=="" ||x.Name=="" ||x.Subject=="" ||x.SurName=="" ||x.Mail.Length<=10 || x.Subject.Length<=3)
-            {
-                return -1;
-            }
-            return contact.Insert(x);
+            _contactdal = contactdal;
         }
-        public List <Contact> GetAll()
+        public Contact GetByID(int id)
         {
-            return contact.List();
+            return _contactdal.Find(x => x.ContactId == id);
         }
-        public Contact MessageDetail(int id)
+
+        public List<Contact> GetList()
         {
-            return contact.Find(x => x.ContactId == id);
+            return _contactdal.List();
         }
+
+        public void TAdd(Contact t)
+        {
+            _contactdal.Insert(t);
+        }
+
+        public void TDelete(Contact t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(Contact t)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

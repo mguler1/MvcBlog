@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using Business.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Interface;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,29 +10,39 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class AuthorManager
+    public class AuthorManager:IAuthorService
     {
+        IAuthorDal _authorDal;
         Repository<Author> repo = new Repository<Author>();
-    public List<Author> GetAll()
-    {
-        return repo.List();
-    }
-        public int AddAuthor(Author A)
+
+        public AuthorManager(IAuthorDal authorDal)
         {
-            return repo.Insert(A);
+            _authorDal = authorDal;
         }
-        public Author FindAuthor(int getId)
+
+        public Author GetByID(int id)
         {
-            return repo.Find(x => x.AuthorId == getId);
+            return _authorDal.GetById(id);
         }
-        public int UpdateAuthor(Author p)
+
+        public List<Author> GetList()
         {
-            Author author = repo.Find(x => x.AuthorId == p.AuthorId);
-            author.AuthorName = p.AuthorName;
-            author.AuthorAbout = p.AuthorAbout;
-            author.AuthorImage = p.AuthorImage;
-            author.AuthorId = p.AuthorId;
-            return repo.Update(author);
+            return _authorDal.List();
+        }
+
+        public void TAdd(Author t)
+        {
+            _authorDal.Insert(t);
+        }
+
+        public void TDelete(Author t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(Author t)
+        {
+            _authorDal.Update(t);
         }
     }
 }

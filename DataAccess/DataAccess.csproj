@@ -53,6 +53,14 @@
   <ItemGroup>
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repository.cs" />
+    <Compile Include="Ef\EfAboutDal.cs" />
+    <Compile Include="Ef\EfAuthorDal.cs" />
+    <Compile Include="Ef\EfBlogDal.cs" />
+    <Compile Include="Ef\EfCategoryDal.cs" />
+    <Compile Include="Ef\EfCommentDal.cs" />
+    <Compile Include="Ef\EfContactDal.cs" />
+    <Compile Include="Ef\EfMailDal.cs" />
+    <Compile Include="Ef\SubscribeMail.cs" />
     <Compile Include="Interface\IAdminDal.cs" />
     <Compile Include="Interface\IAuthorDal.cs" />
     <Compile Include="Interface\IBlogDal.cs" />
@@ -60,6 +68,7 @@
     <Compile Include="Interface\ICategoryDal.cs" />
     <Compile Include="Interface\ICommentDal.cs" />
     <Compile Include="Interface\IContactDal.cs" />
+    <Compile Include="Interface\IMailDal.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Migrations\202108171119445_Initial.cs" />
     <Compile Include="Migrations\202108171119445_Initial.designer.cs">
@@ -100,6 +109,14 @@
     <Compile Include="Migrations\202109031917561_addcommentstatus.cs" />
     <Compile Include="Migrations\202109031917561_addcommentstatus.designer.cs">
       <DependentUpon>202109031917561_addcommentstatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109191341480_BlogImageAdd.cs" />
+    <Compile Include="Migrations\202109191341480_BlogImageAdd.designer.cs">
+      <DependentUpon>202109191341480_BlogImageAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202261428211_refactore.cs" />
+    <Compile Include="Migrations\202202261428211_refactore.designer.cs">
+      <DependentUpon>202202261428211_refactore.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +162,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109031917561_addcommentstatus.resx">
       <DependentUpon>202109031917561_addcommentstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109191341480_BlogImageAdd.resx">
+      <DependentUpon>202109191341480_BlogImageAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202261428211_refactore.resx">
+      <DependentUpon>202202261428211_refactore.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

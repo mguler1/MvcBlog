@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using Business.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Interface;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,23 +10,40 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-   public class AboutManager
+    public class AboutManager : IAboutService
     {
+        IAboutDal _aboutDal;
         Repository<About> Aboutrepo = new Repository<About>();
-        public List<About> GetAll()
+        public AboutManager(IAboutDal aboutDal)
         {
-            return Aboutrepo.List();
-        }
-        public int updateAbout(About a)
-        {
-            About about = Aboutrepo.Find(x => x.AboutId == a.AboutId);
-            about.AboutContent = a.AboutContent;
-            about.AboutContent2 = a.AboutContent2;
-            about.AboutImage = a.AboutImage;
-            about.AboutImage2 = a.AboutImage2;
-            about.AboutId = a.AboutId;
-            return Aboutrepo.Update(about);
+            _aboutDal = aboutDal;
         }
 
+
+
+        public About GetByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<About> GetList()
+        {
+            return _aboutDal.List();
+        }
+
+        public void TAdd(About t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TDelete(About t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(About t)
+        {
+            _aboutDal.Update(t);
+        }
     }
 }

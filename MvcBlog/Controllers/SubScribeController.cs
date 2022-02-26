@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccessLayer.EntityFramework;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,7 @@ namespace MvcBlog.Controllers
 {
     public class SubScribeController : Controller
     {
-        [AllowAnonymous]
-        // GET: SubScribe
+        SubscribeMailManager sm = new SubscribeMailManager(new EfMailDal());
         [HttpGet]
         public PartialViewResult AddMail()
         {
@@ -21,8 +21,7 @@ namespace MvcBlog.Controllers
      
         public PartialViewResult AddMail(SubScribe x)
         {
-            SubScribeManager sm = new SubScribeManager();
-            sm.BlAdd(x);
+            sm.TAdd(x);
             return PartialView();
         }
     }
