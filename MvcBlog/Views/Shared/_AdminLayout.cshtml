@@ -1,299 +1,258 @@
 ﻿
+
+                       
+                      
+                     
+         
+
 @{
-
     Layout = null;
-
 }
-
 <!DOCTYPE html>
-
 <html>
 
 <head>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>INSPINIA | Lightbox Gallery</title>
 
-    <title>AdminLTE 3 | Admin</title>
-
-    <!-- Tell the browser to be responsive to screen width -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Font Awesome -->
-
-    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
-
-    <!-- Ionicons -->
-
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-    <!-- overlayScrollbars -->
-
-    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
-
-    <!-- Google Font: Source Sans Pro -->
-
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/inspiniaTema/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/inspiniaTema/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/inspiniaTema/css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+    <link href="~/inspiniaTema/css/animate.css" rel="stylesheet">
+    <link href="~/inspiniaTema/css/style.css" rel="stylesheet">
 
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body>
 
-    <!-- Site wrapper -->
+    <div id="wrapper">
 
-    <div class="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" class="rounded-circle" src="~/inspiniaTema/img/profile_small.jpg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
-        <!-- Navbar -->
-        <!-- /.navbar -->
-        <!-- Main Sidebar Container -->
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                                <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
+                                <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
+                                <li class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="login.html">Çıkış Yap</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li>
 
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">İşlemler</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
 
-            <!-- Brand Logo -->
+                            <li><a href="/Blog/AdminBlogList">Bloglar</a></li>
+                            <li><a href="/Category/AdminCategoryList">Kategoriler</a></li>
+                            <li><a href="/Author/AuthorList">Yazarlar</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li>
 
-            <a href="../../index3.html" class="brand-link">
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Yorumlar</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
 
-                <img src="~/AdminLTE-3.0.4/dist/img/AdminLTELogo.png"
-                     alt="AdminLTE Logo"
-                     class="brand-image img-circle elevation-3"
-                     style="opacity: .8">
+                            <li><a href="/Comment/AdminCommentList">Yayınlanan Yorumlar</a></li>
+                            <li><a href="/Comment/AdminCommentListFalse/">Kaldırılan Yorumlar</a></li>
+                        </ul>
+                    </li>
 
-                <span class="brand-text font-weight-light">Blog Sistemi</span>
+                    <li>
+                        <a href="/About/UpdateAbout"><i class="fa fa-pie-chart"></i> <span class="nav-label">Hakkımızda</span>  </a>
+                    </li>
+                    <li>
+                        <a href="/Contact/SendBox"><i class="fa fa-flask"></i> <span class="nav-label">İletişim-Mesaj</span></a>
+                    </li>
+                    <li>
+                        <a href="/User/LogOut"><i class="fa fa-laptop"></i> <span class="nav-label">Çıkış Yap</span></a>
+                    </li>
 
-            </a>
 
-            <!-- Sidebar -->
 
-            <div class="sidebar">
+                </ul>
 
-                <!-- Sidebar user (optional) -->
+            </div>
+        </nav>
 
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
-                    <div class="image">
-
-                        <img src="~/AdminLTE-3.0.4/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                            <div class="form-group">
+                                <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="info">
-
-                        <a href="#" class="d-block">Admin Kontrol</a>
-
-                    </div>
-
-                </div>
-
-                <!-- Sidebar Menu -->
-
-                <nav class="mt-2">
-
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-                        <!-- Add icons to the links using the .nav-icon class
-
-    with font-awesome or any other icon font library -->
-
-
-
-                        <li class="nav-item">
-
-                            <a href="/Blog/AdminBlogList" class="nav-link">
-
-                                <i class="nav-icon fas fa-th"></i>
-
-                                <p>
-                                    Bloglar
-                                </p>
-
-                            </a>
-
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
                         </li>
-
-                        <li class="nav-item">
-
-                            <a href="/Author/AuthorList" class="nav-link">
-
-                                <i class="nav-icon fas fa-people-arrows"></i>
-
-                                <p>
-                                    Yazarlar
-                                </p>
-
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
                             </a>
-
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-comment"></i>
-                                <p>
-                                    Yorumlar
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/Comment/AdminCommentList/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Yayınlanan Yorumlar</p>
-                                    </a>
+                            <ul class="dropdown-menu dropdown-messages">
+                                <li>
+                                    <div class="dropdown-messages-box">
+                                        <a class="dropdown-item float-left" href="profile.html">
+                                            <img alt="image" class="rounded-circle" src="img/a7.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <small class="float-right">46h ago</small>
+                                            <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                            <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                        </div>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="/Comment/AdminCommentListFalse/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Kaldırılan Yorumlar</p>
-                                    </a>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <div class="dropdown-messages-box">
+                                        <a class="dropdown-item float-left" href="profile.html">
+                                            <img alt="image" class="rounded-circle" src="img/a4.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="float-right text-navy">5h ago</small>
+                                            <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                            <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                                        </div>
+                                    </div>
                                 </li>
-                                
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <div class="dropdown-messages-box">
+                                        <a class="dropdown-item float-left" href="profile.html">
+                                            <img alt="image" class="rounded-circle" src="img/profile.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="float-right">23h ago</small>
+                                            <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                            <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a href="mailbox.html" class="dropdown-item">
+                                            <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                        </a>
+                                    </div>
+                                </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-
-                            <a href="/Category/AdminCategoryList" class="nav-link">
-
-                                <i class="nav-icon fas fa-box"></i>
-
-                                <p>
-                                    Kategoriler
-                                </p>
-
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
                             </a>
-
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a href="mailbox.html" class="dropdown-item">
+                                        <div>
+                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                            <span class="float-right text-muted small">4 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <a href="profile.html" class="dropdown-item">
+                                        <div>
+                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                            <span class="float-right text-muted small">12 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <a href="grid_options.html" class="dropdown-item">
+                                        <div>
+                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                            <span class="float-right text-muted small">4 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a href="notifications.html" class="dropdown-item">
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
 
-                            <a href="/About/UpdateAbout" class="nav-link">
 
-                                <i class="nav-icon fas fa-address-book"></i>
-
-                                <p>
-                                    Hakkımızda
-                                </p>
-
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i> Log out
                             </a>
-
-                        </li>
-                        <li class="nav-item">
-
-                            <a href="/Contact/SendBox" class="nav-link">
-
-                                <i class="nav-icon fas fa-phone"></i>
-
-                                <p>
-                                    İletişim
-                                </p>
-
-                            </a>
-
-                        </li>
-                        @*<li class="nav-item">
-
-                            <a href="../widgets.html" class="nav-link">
-
-                                <i class="nav-icon fas fa-chart-pie"></i>
-
-                                <p>
-                                    Grafikler
-                                </p>
-
-                            </a>
-
-                        </li>*@
-                        @*<li class="nav-item">
-
-                            <a href="../widgets.html" class="nav-link">
-
-                                <i class="nav-icon fas fa-star"></i>
-
-                                <p>
-                                    Yetkilendirme
-                                </p>
-
-                            </a>
-
-                        </li>*@
-                        <li class="nav-item">
-
-                            <a href="/User/LogOut" class="nav-link">
-
-                                <i class="nav-icon fas fa-car"></i>
-
-                                <p>
-                                    Çıkış Yap
-                                </p>
-
-                            </a>
-
                         </li>
                     </ul>
 
                 </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
 
-                <!-- /.sidebar-menu -->
+                <div class="col-lg-2">
 
+                </div>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+
+                            <div class="ibox-content">
+                                @RenderBody()
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <!-- /.sidebar -->
-
-        </aside>
-
-        <!-- Content Wrapper. Contains page content -->
-
-        <div class="content-wrapper">
-
-            <!-- Content Header (Page header) -->
-
-            <section class="content-header">
-
-                <div class="container-fluid">
-
-                            @RenderBody()
-
-                 
-                </div><!-- /.container-fluid -->
-
-            </section>
-
-            <!-- Main content -->
-            <!-- /.content -->
 
         </div>
-
-        <!-- /.content-wrapper -->
-
-    
-        <!-- Control Sidebar -->
-
-        <aside class="control-sidebar control-sidebar-dark">
-
-            <!-- Control sidebar content goes here -->
-
-        </aside>
-
-        <!-- /.control-sidebar -->
-
     </div>
 
-    <!-- ./wrapper -->
-    <!-- jQuery -->
 
-    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap 4 -->
+    <!-- Mainly scripts -->
+    <script src="~/inspiniaTema/js/jquery-3.1.1.min.js"></script>
+    <script src="~/inspiniaTema/js/popper.min.js"></script>
+    <script src="~/inspiniaTema/js/bootstrap.js"></script>
+    <script src="~/inspiniaTema/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/inspiniaTema/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="~/inspiniaTema/js/inspinia.js"></script>
+    <script src="~/inspiniaTema/js/plugins/pace/pace.min.js"></script>
 
-    <!-- AdminLTE App -->
-
-    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
-
-    <!-- AdminLTE for demo purposes -->
-
-    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+    <!-- blueimp gallery -->
+    <script src="~/inspiniaTema/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
 
 </body>
 
 </html>
-
